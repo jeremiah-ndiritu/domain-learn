@@ -1,0 +1,26 @@
+body {
+  background: yellow;
+}
+#topics-overview {
+  justify-content: center;
+}
+#topics-overview ol {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+#topics-overview ol {
+  border: 1px solid red;
+  list-style-position: inside;
+
+  li {
+    background-color: azure;
+    width: fit-content;
+    padding: 1em;
+    border: 1px solid lime;
+    border-radius: 18px;
+  }
+}
+#topics-overview a {
+  color: blue;
+}

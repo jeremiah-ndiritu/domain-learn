@@ -1,0 +1,23 @@
+body {
+  background: aqua;
+}
+#topics-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1em;
+}
+.topic-card {
+  background: linear-gradient(180deg, aquamarine, green);
+  padding: 1em;
+  box-shadow: inset 1em 1em 24px aquamarine;
+}
+.topic-card p {
+  position: relative;
+  box-shadow: 0 0 24px aquamarine;
+}
+.topic-card a {
+  color: blue;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 1.6em;
+}
