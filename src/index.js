@@ -10,19 +10,25 @@ const DOMAIN = `http://domain-learn.localhost:${port}`;
 app.use(cors());
 app.use(express.json());
 
-const mountSubApp = (subdomain = "www", folder = "www") => {
+const mountSubApp = (subdomain = null, folder = "www") => {
   const subApp = express();
   subApp.use(express.json());
   subApp.use(express.static(path.join(__dirname, "apps", folder)));
   const routes = require(`./routes/${folder}/main.${folder}.routes`);
   routes(subApp);
-  app.use((req, res, next) => {
-    if (req.subdomains[0] === subdomain || (!subdomain && !req.subdomains[0])) {
-      subApp(req, res, next);
-    } else {
-      next();
-    }
-  });
+
+  // If no subdomain, mount at root
+  if (!subdomain) {
+    app.use("/", subApp);
+  } else {
+    app.use((req, res, next) => {
+      if (req.subdomains[0] === subdomain) {
+        subApp(req, res, next);
+      } else {
+        next();
+      }
+    });
+  }
 };
 
 mountSubApp("", "www");
